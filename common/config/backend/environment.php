@@ -1,10 +1,6 @@
 <?php
 
-/**
- * @name Environment
- * @author Peter
- * @version 1.0
- */
+
 class Environment
 {
 
@@ -43,16 +39,12 @@ class Environment
                     'cookieValidationKey' => 'kPMwIp7dN1F7tDBo1dPv2hhYH8koqTgN2323',
                 ],
                 'errorHandler' => [
-                    'errorAction' => 'sdkerror/error/404',
+                    'errorAction' => 'site/error',
                 ],
             ],
-            'params' => [
-                'uploads_server' => 1,
-                'baseinfo' => [
-                    'phone' => '4009393333',
-                    'email' => 'kf@yingxiong.com',
-                    'website' => ''
-                ]
+            'aliases' => [
+                '@bower' => '@vendor/bower-asset',
+                '@npm'   => '@vendor/npm-asset',
             ],
             'modules' => [
             ]
@@ -119,15 +111,14 @@ class Environment
                     'keyPrefix' => 'chu_',
                     'serializer' => false, //null|array|false
                 ],
+
                 'log' => [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning', 'info', 'trace'],
-                    'categories' => [
-                        'yii\db\*',
-                        'yii\web\HttpException:*',
-                    ],
-                    'except' => [
-                        'yii\web\HttpException:404',
+                    'traceLevel' => $this->_trace_level,
+                    'targets' => [
+                        [
+                            'class' => 'yii\log\FileTarget',
+                            'levels' => ['error', 'warning'],
+                        ],
                     ],
                 ],
             ],
@@ -194,10 +185,12 @@ class Environment
                     'serializer' => false, //null|array|false
                 ],
                 'log' => [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                    'categories' => [
-                        'yii\*',
+                    'traceLevel' => $this->_trace_level,
+                    'targets' => [
+                        [
+                            'class' => 'yii\log\FileTarget',
+                            'levels' => ['error', 'warning'],
+                        ],
                     ],
                 ],
             ],
@@ -263,10 +256,12 @@ class Environment
                     'serializer' => false, //null|array|false
                 ],
                 'log' => [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                    'categories' => [
-                        'yii\*',
+                    'traceLevel' => $this->_trace_level,
+                    'targets' => [
+                        [
+                            'class' => 'yii\log\FileTarget',
+                            'levels' => ['error'],
+                        ],
                     ],
                 ],
             ],
@@ -326,8 +321,12 @@ class Environment
                     'serializer' => false, //null|array|false
                 ],
                 'log' => [
+                    'traceLevel' => $this->_trace_level,
                     'targets' => [
-                        //'traceLevel' => 0,
+                       /* [
+                            'class' => 'yii\log\FileTarget',
+                            'levels' => ['error', 'warning'],
+                        ],*/
                         'file' => [
                             'class' => 'yii\log\FileTarget',
                             'levels' => ['warning', 'error'],
@@ -338,7 +337,7 @@ class Environment
                             'levels' => ['info'],
                             'categories' => ['yii\db\Command::*'],
                         ],
-                    ]
+                    ],
                 ]
             ],
         ];
