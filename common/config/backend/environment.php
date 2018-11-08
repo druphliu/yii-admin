@@ -78,11 +78,11 @@ class Environment
                 // Database
                 'db' => [
                     'class' => 'yii\db\Connection',
-                    'dsn' => 'mysql:host=10.0.6.199;dbname=hsdk',
+                    'dsn' => 'mysql:host=10.0.6.199;dbname=admin',
                     'username' => 'root',
                     'password' => 'yx_pwd',
                     'charset' => 'utf8',
-                    'tablePrefix' => 'cms_',
+                    'tablePrefix' => 'c_',
 
                     //配置从服务器
                     'slaveConfig' => [
@@ -97,9 +97,9 @@ class Environment
                     ],
 
                     // 配置从服务器组
-                    'slaves' => [
+                 /*   'slaves' => [
                         ['dsn' => 'mysql:host=10.0.6.199;dbname=hsdk'],
-                    ],
+                    ],*/
                 ],
                 'redis' => [
                     'class' => 'yii\redis\Cache',
@@ -117,7 +117,7 @@ class Environment
                     'targets' => [
                         [
                             'class' => 'yii\log\FileTarget',
-                            'levels' => ['error', 'warning'],
+                            'levels' => ['error', 'warning','info'],
                         ],
                     ],
                 ],
@@ -402,7 +402,7 @@ class Environment
             case self::TEST:
                 $this->_config = array_merge_recursive($this->_main(), $this->_test());
                 $this->_debug = TRUE;
-                $this->_trace_level = 0;
+                $this->_trace_level = 3;
                 $this->_env = 'dev';
                 break;
             case self::STAGE:
@@ -420,7 +420,7 @@ class Environment
             default:
                 $this->_config = $this->_main();
                 $this->_debug = TRUE;
-                $this->_trace_level = 0;
+                $this->_trace_level = 3;
                 $this->_env = 'dev';
                 break;
         }
