@@ -79,6 +79,37 @@
             }
         })
     }), l.render({
+        elem: "#LAY-user-back-menu",
+        url: "/rbac/menu/list.html",
+        cols: [[{type: "checkbox", fixed: "left"}, {field: "id", width: 80, title: "ID", sort: !0},
+            {field: "icon", title: "图标", templet: "#icon",},
+            {field: "name", title: "菜单名"},
+            {field: "url", title: "路由"},
+            {field: "sort", title: "排序"}, {
+            title: "操作",
+            width: 150,
+            align: "center",
+            fixed: "right",
+            toolbar: "#table-useradmin-menu"
+        }]],
+        text: "对不起，加载出现异常！"
+    }), l.on("tool(LAY-user-back-menu)", function (e) {
+        var l = e.data;
+        "del" === e.event ? layer.confirm("确定删除此角色？", function (i) {
+            e.del(), layer.close(i)
+        }) : "edit" === e.event && i.popup({
+            title: "编辑菜单",
+            area: ["500px", "480px"],
+            id: "LAY-popup-menu-editor",
+            success: function (e, i) {
+                t(this.id).render("rbac/menu/form", l).done(function () {
+                    r.render(null, "layuiadmin-form-role"), r.on("submit(LAY-user-role-submit)", function (e) {
+                        e.field, layui.table.reload("LAY-user-back-role"), layer.close(i)
+                    })
+                })
+            }
+        })
+    }), l.render({
         elem: "#LAY-user-back-role",
         url: "./json/useradmin/role.js",
         cols: [[{type: "checkbox", fixed: "left"}, {field: "id", width: 80, title: "ID", sort: !0}, {

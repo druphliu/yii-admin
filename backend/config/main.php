@@ -9,13 +9,17 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        'rbac' => [
+            'class' => 'backend\modules\rbac\Module',
+        ]
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
         'user' => [
-            'identityClass' => 'backend\models\User',
+            'identityClass' => 'backend\models\AdminUser',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
@@ -32,6 +36,7 @@ return [
             'showScriptName' => false,
             'suffix' => '.html',
             'rules' => [
+                'menu/index'=>'rbac/menu/index',
             ],
         ],
 

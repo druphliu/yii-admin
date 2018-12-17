@@ -78,9 +78,9 @@ class Environment
                 // Database
                 'db' => [
                     'class' => 'yii\db\Connection',
-                    'dsn' => 'mysql:host=10.0.6.199;dbname=admin',
+                    'dsn' => 'mysql:host=127.0.0.1;dbname=admin',
                     'username' => 'root',
-                    'password' => 'yx_pwd',
+                    'password' => 'root',
                     'charset' => 'utf8',
                     'tablePrefix' => 'c_',
 
@@ -89,7 +89,7 @@ class Environment
                         'username' => 'root',
                         'password' => 'yx_pwd',
                         'charset' => 'utf8',
-                        'tablePrefix' => 'cms_',
+                        'tablePrefix' => 'c_',
                         'attributes' => [
                             // use a smaller connection timeout
                             PDO::ATTR_TIMEOUT => 10,
